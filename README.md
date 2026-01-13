@@ -56,12 +56,22 @@ cd discord-bot && npm install && npm run dev
 
 ---
 
+## Live Submission (Review Handoff)
+
+| Requirement | Details |
+|-------------|---------|
+| **Admin Dashboard** | [Live URL](https://bharatdangi-admin-dashboard-discord-bot.vercel.app/) |
+| **Discord Bot** | [Live URL](https://discord-copilot-with-dashboard.onrender.com/) |
+| **Admin Email** | `reviewer@example.com` |
+| **Admin Password** | `ReviewPass123!` |
+
+---
+
 ## 📦 Handoff Documentation
 
 Full details for reviewers are separated into:
 - 📖 **[Admin Dashboard](./admin-dashboard/README.md)**: Features & UX Guide.
 - 📖 **[Discord Bot](./discord-bot/README.md)**: Architecture & Logic Guide.
-- 🚀 **[Deployment Checklist](C:\Users\ASUS\.gemini\antigravity\brain\935f695e-cf00-4ac3-ac0a-9a8c60ee12bb\deployment_checklist.md)**: Steps for Vercel & Railway.
 
 ---
 
