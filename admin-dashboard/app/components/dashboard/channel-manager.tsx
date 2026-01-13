@@ -206,7 +206,7 @@ export default function ChannelManager() {
     return (
         <>
             <div
-                className="p-6 rounded-2xl relative overflow-hidden"
+                className="p-4 md:p-6 rounded-2xl relative overflow-hidden"
                 style={{
                     background: 'var(--bg-card)',
                     border: '2px solid var(--border-light)',
@@ -221,37 +221,23 @@ export default function ChannelManager() {
 
                 <div className="flex items-center gap-2 mb-2">
                     <h2
-                        className="text-xl font-semibold"
+                        className="text-lg md:text-xl font-semibold"
                         style={{ color: 'var(--text-primary)' }}
                     >
                         Discord Channel Allow-list
                     </h2>
-                    <div
-                        className="group relative"
-                        title="Add Discord channel IDs where the bot can respond. Right-click a channel in Discord → Copy Channel ID"
-                    >
-                        <div
-                            className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold cursor-help"
-                            style={{
-                                background: 'var(--accent-cyan)',
-                                color: 'var(--text-inverse)',
-                            }}
-                        >
-                            ?
-                        </div>
-                    </div>
                 </div>
 
                 <p
-                    className="text-sm mb-4"
+                    className="text-xs md:text-sm mb-4"
                     style={{ color: 'var(--text-secondary)' }}
                 >
-                    Manage which Discord channels the bot can respond in. The bot will only respond in enabled channels or when mentioned.
+                    Add Discord channel IDs where the bot can respond (Right-click a channel in Discord → Copy Channel ID). The bot will only respond in enabled channels or when mentioned.
                 </p>
 
                 {/* Add Channel Form */}
                 <div
-                    className="mb-6 p-5 rounded-xl"
+                    className="mb-6 p-4 md:p-5 rounded-xl"
                     style={{
                         background: 'var(--bg-tertiary)',
                         border: '2px solid var(--border-light)',
@@ -265,10 +251,10 @@ export default function ChannelManager() {
                     </h3>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-                        <div>
+                        <div className="w-full">
                             <label
                                 htmlFor="channel-id"
-                                className="block text-xs mb-1 font-medium"
+                                className="block text-[10px] md:text-xs mb-1 font-medium"
                                 style={{ color: 'var(--text-secondary)' }}
                             >
                                 Channel ID <span style={{ color: 'var(--accent-red-text)' }}>*</span>
@@ -279,7 +265,7 @@ export default function ChannelManager() {
                                 value={newChannelId}
                                 onChange={(e) => setNewChannelId(e.target.value)}
                                 disabled={adding}
-                                className="w-full p-3 rounded-lg text-sm transition-all duration-200 focus:scale-[1.02]"
+                                className="w-full p-2.5 md:p-3 rounded-lg text-xs md:text-sm transition-all duration-200 focus:scale-[1.02]"
                                 style={{
                                     background: 'var(--bg-input)',
                                     border: '2px solid var(--border-light)',
@@ -289,10 +275,10 @@ export default function ChannelManager() {
                             />
                         </div>
 
-                        <div>
+                        <div className="w-full">
                             <label
                                 htmlFor="channel-name"
-                                className="block text-xs mb-1 font-medium"
+                                className="block text-[10px] md:text-xs mb-1 font-medium"
                                 style={{ color: 'var(--text-secondary)' }}
                             >
                                 Channel Name (optional)
@@ -303,7 +289,7 @@ export default function ChannelManager() {
                                 value={newChannelName}
                                 onChange={(e) => setNewChannelName(e.target.value)}
                                 disabled={adding}
-                                className="w-full p-3 rounded-lg text-sm transition-all duration-200 focus:scale-[1.02]"
+                                className="w-full p-2.5 md:p-3 rounded-lg text-xs md:text-sm transition-all duration-200 focus:scale-[1.02]"
                                 style={{
                                     background: 'var(--bg-input)',
                                     border: '2px solid var(--border-light)',
@@ -317,7 +303,7 @@ export default function ChannelManager() {
                     <button
                         onClick={handleAddChannel}
                         disabled={adding || !newChannelId.trim()}
-                        className="px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center gap-2"
+                        className="w-full sm:w-auto px-6 py-2.5 md:py-3 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
                         style={{
                             background: (adding || !newChannelId.trim()) ? 'var(--bg-tertiary)' : 'var(--gradient-success)',
                             color: (adding || !newChannelId.trim()) ? 'var(--text-secondary)' : 'var(--text-inverse)',
@@ -338,7 +324,7 @@ export default function ChannelManager() {
                 {/* Feedback Messages */}
                 {feedback && (
                     <div
-                        className="p-4 mb-4 rounded-xl border-2"
+                        className="p-3 md:p-4 mb-4 rounded-xl border-2"
                         style={{
                             background: feedback.type === 'success'
                                 ? 'var(--accent-green)'
@@ -349,7 +335,7 @@ export default function ChannelManager() {
                             color: 'var(--text-inverse)',
                         }}
                     >
-                        <p className="text-sm font-medium">
+                        <p className="text-xs md:text-sm font-medium">
                             {feedback.message}
                         </p>
                     </div>
@@ -358,22 +344,22 @@ export default function ChannelManager() {
                 {/* Channels List */}
                 {channels.length === 0 ? (
                     <div
-                        className="text-center py-12 rounded-xl"
+                        className="text-center py-8 md:py-12 rounded-xl"
                         style={{
                             background: 'var(--bg-tertiary)',
                             border: '2px dashed var(--border-medium)',
                         }}
                     >
-                        <p className="text-lg mb-2" style={{ color: 'var(--text-secondary)' }}>No channels configured yet</p>
-                        <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>Add a channel above to get started</p>
-                        <p className="text-xs mt-3 px-4" style={{ color: 'var(--text-tertiary)' }}>
+                        <p className="text-base md:text-lg mb-2" style={{ color: 'var(--text-secondary)' }}>No channels configured yet</p>
+                        <p className="text-xs md:text-sm" style={{ color: 'var(--text-tertiary)' }}>Add a channel above to get started</p>
+                        <p className="text-[10px] md:text-xs mt-3 px-4" style={{ color: 'var(--text-tertiary)' }}>
                             Example: 123456789012345678
                         </p>
                     </div>
                 ) : (
                     <div className="space-y-3">
                         <p
-                            className="text-xs px-3 py-1 rounded-full inline-block"
+                            className="text-[10px] md:text-xs px-2 md:px-3 py-1 rounded-full inline-block"
                             style={{
                                 background: 'var(--accent-purple)',
                                 color: 'var(--text-inverse)',
@@ -384,16 +370,16 @@ export default function ChannelManager() {
                         {channels.map((channel) => (
                             <div
                                 key={channel.id}
-                                className="p-4 rounded-xl flex items-center justify-between transition-all duration-200 hover:scale-[1.01]"
+                                className="p-3 md:p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all duration-200 hover:scale-[1.01]"
                                 style={{
                                     background: 'var(--bg-tertiary)',
                                     border: '2px solid var(--border-light)',
                                 }}
                             >
-                                <div className="flex-1">
-                                    <div className="flex items-center gap-3">
+                                <div className="flex-1 w-full overflow-hidden">
+                                    <div className="flex flex-wrap items-center gap-2 md:gap-3">
                                         <code
-                                            className="text-sm font-mono px-3 py-1 rounded-lg"
+                                            className="text-[10px] md:text-sm font-mono px-2 md:px-3 py-0.5 md:py-1 rounded-lg break-all"
                                             style={{
                                                 background: 'var(--bg-input)',
                                                 color: 'var(--accent-blue-text)',
@@ -404,7 +390,7 @@ export default function ChannelManager() {
                                         </code>
                                         {channel.channel_name && (
                                             <span
-                                                className="text-sm font-medium"
+                                                className="text-xs md:text-sm font-medium truncate max-w-[150px] md:max-w-none"
                                                 style={{ color: 'var(--text-primary)' }}
                                             >
                                                 #{channel.channel_name}
@@ -412,17 +398,17 @@ export default function ChannelManager() {
                                         )}
                                     </div>
                                     <p
-                                        className="text-xs mt-1"
+                                        className="text-[10px] md:text-xs mt-1"
                                         style={{ color: 'var(--text-tertiary)' }}
                                     >
                                         Added {new Date(channel.added_at).toLocaleDateString()}
                                     </p>
                                 </div>
 
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-2 md:gap-3 justify-end">
                                     <button
                                         onClick={() => handleToggleEnabled(channel.id, channel.is_enabled)}
-                                        className="px-4 py-2 rounded-lg text-xs font-medium transition-all duration-200 hover:scale-105"
+                                        className="flex-1 md:flex-none px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-[10px] md:text-xs font-medium transition-all duration-200 hover:scale-105"
                                         style={{
                                             background: channel.is_enabled ? 'var(--accent-green)' : 'var(--bg-hover)',
                                             color: channel.is_enabled ? 'var(--text-inverse)' : 'var(--text-secondary)',
@@ -434,7 +420,7 @@ export default function ChannelManager() {
 
                                     <button
                                         onClick={() => openRemoveModal(channel.id)}
-                                        className="px-4 py-2 rounded-lg text-xs font-medium transition-all duration-200 hover:scale-105"
+                                        className="flex-1 md:flex-none px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-[10px] md:text-xs font-medium transition-all duration-200 hover:scale-105"
                                         style={{
                                             background: 'var(--accent-red)',
                                             color: 'var(--text-inverse)',

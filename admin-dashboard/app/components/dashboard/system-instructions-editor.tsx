@@ -115,7 +115,7 @@ export default function SystemInstructionsEditor() {
 
     return (
         <div
-            className="p-6 rounded-2xl relative overflow-hidden"
+            className="p-4 md:p-6 rounded-2xl relative overflow-hidden"
             style={{
                 background: 'var(--bg-card)',
                 border: '2px solid var(--border-light)',
@@ -130,29 +130,15 @@ export default function SystemInstructionsEditor() {
 
             <div className="flex items-center gap-2 mb-2">
                 <h2
-                    className="text-xl font-semibold"
+                    className="text-lg md:text-xl font-semibold"
                     style={{ color: 'var(--text-primary)' }}
                 >
                     System Instructions
                 </h2>
-                <div
-                    className="group relative"
-                    title="These instructions define how the bot responds to messages"
-                >
-                    <div
-                        className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold cursor-help"
-                        style={{
-                            background: 'var(--accent-cyan)',
-                            color: 'var(--text-inverse)',
-                        }}
-                    >
-                        ?
-                    </div>
-                </div>
             </div>
 
             <p
-                className="text-sm mb-4"
+                className="text-xs md:text-sm mb-4"
                 style={{ color: 'var(--text-secondary)' }}
             >
                 These instructions control how the Discord bot behaves. Changes take effect immediately.
@@ -162,7 +148,7 @@ export default function SystemInstructionsEditor() {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 disabled={saving}
-                className="w-full min-h-[300px] p-4 rounded-xl text-sm font-mono resize-y mb-3 transition-all duration-200 focus:scale-[1.01]"
+                className="w-full min-h-[250px] md:min-h-[300px] p-4 rounded-xl text-xs md:text-sm font-mono resize-y mb-3 transition-all duration-200 focus:scale-[1.01]"
                 style={{
                     background: saving ? 'var(--bg-tertiary)' : 'var(--bg-input)',
                     border: `2px solid ${saving ? 'var(--border-light)' : hasChanges ? 'var(--accent-purple)' : 'var(--border-medium)'}`,
@@ -171,10 +157,10 @@ export default function SystemInstructionsEditor() {
                 placeholder="Enter system instructions for the Discord bot..."
             />
 
-            <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+                <div className="flex flex-wrap items-center gap-2 md:gap-4">
                     <p
-                        className="text-xs px-3 py-1 rounded-full"
+                        className="text-[10px] md:text-xs px-2 md:px-3 py-1 rounded-full"
                         style={{
                             background: 'var(--bg-tertiary)',
                             color: 'var(--text-secondary)',
@@ -185,7 +171,7 @@ export default function SystemInstructionsEditor() {
                     </p>
                     {updatedAt && (
                         <p
-                            className="text-xs"
+                            className="text-[10px] md:text-xs"
                             style={{ color: 'var(--text-tertiary)' }}
                         >
                             Last saved: {new Date(updatedAt).toLocaleString()}
@@ -196,7 +182,7 @@ export default function SystemInstructionsEditor() {
 
             {feedback && (
                 <div
-                    className="p-4 mb-4 rounded-xl border-2 flex items-center gap-3"
+                    className="p-3 md:p-4 mb-4 rounded-xl border-2 flex items-center gap-3"
                     style={{
                         background: feedback.type === 'success'
                             ? 'var(--accent-green)'
@@ -207,17 +193,17 @@ export default function SystemInstructionsEditor() {
                         color: 'var(--text-inverse)',
                     }}
                 >
-                    <p className="text-sm font-medium flex-1">
+                    <p className="text-xs md:text-sm font-medium flex-1">
                         {feedback.message}
                     </p>
                 </div>
             )}
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <button
                     onClick={handleSave}
                     disabled={saving || !hasChanges}
-                    className="px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center gap-2"
+                    className="px-4 md:px-6 py-2.5 md:py-3 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
                     style={{
                         background: (saving || !hasChanges) ? 'var(--bg-tertiary)' : 'var(--gradient-primary)',
                         color: (saving || !hasChanges) ? 'var(--text-secondary)' : 'var(--text-inverse)',
@@ -237,7 +223,7 @@ export default function SystemInstructionsEditor() {
 
                 {hasChanges && !saving && (
                     <span
-                        className="text-sm font-medium flex items-center gap-2 px-3 py-2 rounded-lg"
+                        className="text-xs md:text-sm font-medium flex items-center justify-center gap-2 px-3 py-2 rounded-lg"
                         style={{
                             color: 'var(--text-inverse)',
                             background: 'var(--accent-amber)',

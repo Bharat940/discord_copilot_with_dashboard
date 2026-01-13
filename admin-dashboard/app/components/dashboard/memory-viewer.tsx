@@ -144,7 +144,7 @@ export default function MemoryViewer() {
     return (
         <>
             <div
-                className="p-6 rounded-2xl relative overflow-hidden"
+                className="p-4 md:p-6 rounded-2xl relative overflow-hidden"
                 style={{
                     background: 'var(--bg-card)',
                     border: '2px solid var(--border-light)',
@@ -154,51 +154,39 @@ export default function MemoryViewer() {
                 {/* Decorative accent */}
                 <div
                     className="absolute top-0 left-0 w-full h-1 opacity-60"
-                    style={{ background: 'var(--gradient-danger)' }}
+                    style={{ background: 'var(--gradient-tertiary)' }}
                 />
 
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                     <div className="flex items-center gap-2">
                         <h2
-                            className="text-xl font-semibold"
+                            className="text-lg md:text-xl font-semibold"
                             style={{ color: 'var(--text-primary)' }}
                         >
                             Conversation Memory
                         </h2>
-                        <div
-                            className="group relative"
-                            title="The bot maintains a rolling summary of recent conversations, updated every 6 messages"
-                        >
-                            <div
-                                className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold cursor-help"
-                                style={{
-                                    background: 'var(--accent-cyan)',
-                                    color: 'var(--text-inverse)',
-                                }}
-                            >
-                                ?
-                            </div>
-                        </div>
                     </div>
-                    <button
-                        onClick={() => setShowResetModal(true)}
-                        disabled={resetting}
-                        className="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center gap-2"
-                        style={{
-                            background: resetting ? 'var(--bg-tertiary)' : 'var(--accent-red)',
-                            color: resetting ? 'var(--text-secondary)' : 'var(--text-inverse)',
-                            border: 'none',
-                        }}
-                    >
-                        {resetting ? (
-                            <>
-                                <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                                Resetting...
-                            </>
-                        ) : (
-                            <>Reset Memory</>
-                        )}
-                    </button>
+                    <div className="flex items-center gap-2 md:gap-3">
+                        <button
+                            onClick={() => setShowResetModal(true)}
+                            disabled={resetting}
+                            className="flex-1 sm:flex-none px-3 md:px-4 py-2 rounded-xl text-[10px] md:text-sm font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+                            style={{
+                                background: resetting ? 'var(--bg-tertiary)' : 'var(--accent-red)',
+                                color: resetting ? 'var(--text-secondary)' : 'var(--text-inverse)',
+                                border: 'none',
+                            }}
+                        >
+                            {resetting ? (
+                                <>
+                                    <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                                    Resetting...
+                                </>
+                            ) : (
+                                <>Reset Memory</>
+                            )}
+                        </button>
+                    </div>
                 </div>
 
                 {resetSuccess && (
@@ -215,28 +203,29 @@ export default function MemoryViewer() {
                 )}
 
                 <p
-                    className="text-sm mb-4"
+                    className="text-xs md:text-sm mb-4"
                     style={{ color: 'var(--text-secondary)' }}
                 >
                     The bot maintains a rolling summary of recent conversations. This memory is updated automatically every 6 messages.
-                    <span className="ml-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>Auto-refreshes every 10s</span>
+                    <span className="block sm:inline sm:ml-2 text-[10px] md:text-xs" style={{ color: 'var(--text-tertiary)' }}>
+                        Auto-refreshes every 10s
+                    </span>
                     {lastRefresh && (
-                        <span className="ml-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>
+                        <span className="block sm:inline sm:ml-2 text-[10px] md:text-xs" style={{ color: 'var(--text-tertiary)' }}>
                             • Last updated: {lastRefresh.toLocaleTimeString()}
                         </span>
                     )}
                 </p>
 
-                {/* Summary Display */}
                 <div className="mb-4">
                     <label
-                        className="block text-sm font-semibold mb-2"
-                        style={{ color: 'var(--text-primary)' }}
+                        className="block text-xs md:text-sm font-semibold mb-2 uppercase tracking-wider"
+                        style={{ color: 'var(--text-tertiary)' }}
                     >
                         Current Summary
                     </label>
                     <div
-                        className="p-4 rounded-xl border-2"
+                        className="p-4 rounded-xl border-2 min-h-[150px] md:min-h-[200px]"
                         style={{
                             background: hasConversation ? 'var(--bg-tertiary)' : 'var(--bg-input)',
                             borderColor: hasConversation ? 'var(--accent-pink)' : 'var(--border-light)',
@@ -244,7 +233,7 @@ export default function MemoryViewer() {
                     >
                         {hasConversation ? (
                             <p
-                                className="text-sm whitespace-pre-wrap leading-relaxed"
+                                className="text-xs md:text-sm whitespace-pre-wrap leading-relaxed font-mono"
                                 style={{ color: 'var(--text-primary)' }}
                             >
                                 {conversationState.summary}
@@ -268,51 +257,48 @@ export default function MemoryViewer() {
                     </div>
                 </div>
 
-                {/* Metadata */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6">
                     <div
-                        className="p-4 rounded-xl"
+                        className="p-3 md:p-4 rounded-xl"
                         style={{
                             background: 'var(--bg-tertiary)',
-                            border: '2px solid var(--border-light)',
+                            border: '1px solid var(--border-light)',
                         }}
                     >
                         <label
-                            className="block text-xs mb-1 font-medium"
-                            style={{ color: 'var(--text-secondary)' }}
+                            className="block text-[10px] md:text-xs mb-1 font-medium uppercase tracking-wider"
+                            style={{ color: 'var(--text-tertiary)' }}
                         >
                             Message Count
                         </label>
                         <p
-                            className="text-2xl font-bold"
-                            style={{ color: 'var(--accent-purple-text)' }}
+                            className="text-xl md:text-2xl font-bold"
+                            style={{ color: 'var(--accent-purple)' }}
                         >
                             {conversationState?.message_count || 0}
-                        </p>
-                        <p
-                            className="text-xs mt-1"
-                            style={{ color: 'var(--text-tertiary)' }}
-                        >
-                            messages since last summary
+                            <span className="text-xs font-normal ml-2" style={{ color: 'var(--text-tertiary)' }}>
+                                messages total
+                            </span>
                         </p>
                     </div>
 
                     <div
-                        className="p-4 rounded-xl"
+                        className="p-3 md:p-4 rounded-xl"
                         style={{
                             background: 'var(--bg-tertiary)',
-                            border: '2px solid var(--border-light)',
+                            border: '1px solid var(--border-light)',
                         }}
                     >
                         <label
-                            className="block text-xs mb-1 font-medium"
-                            style={{ color: 'var(--text-secondary)' }}
+                            className="block text-[10px] md:text-xs mb-1 font-medium uppercase tracking-wider"
+                            style={{ color: 'var(--text-tertiary)' }}
                         >
                             Last Updated
                         </label>
                         <p
-                            className="text-sm font-semibold"
+                            className="text-[10px] sm:text-xs md:text-base font-semibold truncate"
                             style={{ color: 'var(--text-primary)' }}
+                            title={conversationState?.last_updated ? new Date(conversationState.last_updated).toLocaleString() : 'Never'}
                         >
                             {conversationState?.last_updated
                                 ? new Date(conversationState.last_updated).toLocaleString()
