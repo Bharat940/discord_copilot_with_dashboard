@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { History, RotateCcw, MessageSquare, Clock, AlertTriangle } from 'lucide-react'
 
 interface ConversationState {
     id: string
@@ -159,6 +160,7 @@ export default function MemoryViewer() {
 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                     <div className="flex items-center gap-2">
+                        <History size={20} style={{ color: 'var(--accent-pink)' }} />
                         <h2
                             className="text-lg md:text-xl font-semibold"
                             style={{ color: 'var(--text-primary)' }}
@@ -183,7 +185,10 @@ export default function MemoryViewer() {
                                     Resetting...
                                 </>
                             ) : (
-                                <>Reset Memory</>
+                                <>
+                                    <RotateCcw size={16} />
+                                    Reset Memory
+                                </>
                             )}
                         </button>
                     </div>
@@ -265,12 +270,15 @@ export default function MemoryViewer() {
                             border: '1px solid var(--border-light)',
                         }}
                     >
-                        <label
-                            className="block text-[10px] md:text-xs mb-1 font-medium uppercase tracking-wider"
-                            style={{ color: 'var(--text-tertiary)' }}
-                        >
-                            Message Count
-                        </label>
+                        <div className="flex items-center justify-between mb-1">
+                            <label
+                                className="block text-[10px] md:text-xs font-medium uppercase tracking-wider"
+                                style={{ color: 'var(--text-tertiary)' }}
+                            >
+                                Message Count
+                            </label>
+                            <MessageSquare size={14} style={{ color: 'var(--accent-purple)' }} />
+                        </div>
                         <p
                             className="text-xl md:text-2xl font-bold"
                             style={{ color: 'var(--accent-purple)' }}
@@ -289,12 +297,15 @@ export default function MemoryViewer() {
                             border: '1px solid var(--border-light)',
                         }}
                     >
-                        <label
-                            className="block text-[10px] md:text-xs mb-1 font-medium uppercase tracking-wider"
-                            style={{ color: 'var(--text-tertiary)' }}
-                        >
-                            Last Updated
-                        </label>
+                        <div className="flex items-center justify-between mb-1">
+                            <label
+                                className="block text-[10px] md:text-xs font-medium uppercase tracking-wider"
+                                style={{ color: 'var(--text-tertiary)' }}
+                            >
+                                Last Updated
+                            </label>
+                            <Clock size={14} style={{ color: 'var(--text-tertiary)' }} />
+                        </div>
                         <p
                             className="text-[10px] sm:text-xs md:text-base font-semibold truncate"
                             style={{ color: 'var(--text-primary)' }}
@@ -334,7 +345,7 @@ export default function MemoryViewer() {
                             className="text-xl font-bold mb-4 flex items-center gap-2"
                             style={{ color: 'var(--text-primary)' }}
                         >
-                            <span className="text-2xl">⚠️</span> Reset Conversation Memory?
+                            <AlertTriangle size={24} style={{ color: 'var(--accent-red)' }} /> Reset Conversation Memory?
                         </h3>
                         <p
                             className="text-sm mb-6 leading-relaxed"

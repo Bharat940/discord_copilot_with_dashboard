@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { FileText, Save } from 'lucide-react'
 
 interface SystemInstructions {
     id: string
@@ -129,6 +130,7 @@ export default function SystemInstructionsEditor() {
             />
 
             <div className="flex items-center gap-2 mb-2">
+                <FileText size={20} style={{ color: 'var(--accent-blue)' }} />
                 <h2
                     className="text-lg md:text-xl font-semibold"
                     style={{ color: 'var(--text-primary)' }}
@@ -217,7 +219,10 @@ export default function SystemInstructionsEditor() {
                             Saving...
                         </>
                     ) : (
-                        <>Save Changes</>
+                        <>
+                            <Save size={18} />
+                            Save Changes
+                        </>
                     )}
                 </button>
 

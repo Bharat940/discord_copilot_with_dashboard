@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { Plus, Trash2, CheckCircle, XCircle, AlertTriangle } from 'lucide-react'
 
 interface AllowedChannel {
     id: string
@@ -247,7 +248,8 @@ export default function ChannelManager() {
                         className="text-sm font-semibold mb-3 flex items-center gap-2"
                         style={{ color: 'var(--text-primary)' }}
                     >
-                        <span className="text-lg">➕</span> Add New Channel
+                        <Plus size={18} style={{ color: 'var(--accent-green-text)' }} />
+                        Add New Channel
                     </h3>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
@@ -420,13 +422,14 @@ export default function ChannelManager() {
 
                                     <button
                                         onClick={() => openRemoveModal(channel.id)}
-                                        className="flex-1 md:flex-none px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-[10px] md:text-xs font-medium transition-all duration-200 hover:scale-105"
+                                        className="flex-1 md:flex-none px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-[10px] md:text-xs font-medium transition-all duration-200 hover:scale-105 flex items-center justify-center gap-1.5"
                                         style={{
                                             background: 'var(--accent-red)',
                                             color: 'var(--text-inverse)',
                                             border: '2px solid var(--accent-red-hover)',
                                         }}
                                     >
+                                        <Trash2 size={14} />
                                         Remove
                                     </button>
                                 </div>
@@ -462,7 +465,8 @@ export default function ChannelManager() {
                             className="text-xl font-bold mb-4 flex items-center gap-2"
                             style={{ color: 'var(--text-primary)' }}
                         >
-                            <span className="text-2xl">⚠️</span> Remove Channel?
+                            <AlertTriangle className="text-accent-red" size={24} style={{ color: 'var(--accent-red)' }} />
+                            Remove Channel?
                         </h3>
                         <p
                             className="text-sm mb-6 leading-relaxed"

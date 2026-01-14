@@ -4,10 +4,12 @@ import { useState, FormEvent } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import ThemeToggle from '@/app/components/ui/theme-toggle'
+import { Eye, EyeOff } from 'lucide-react'
 
 export default function LoginPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
     const router = useRouter()
@@ -117,21 +119,35 @@ export default function LoginPage() {
                         >
                             Password
                         </label>
-                        <input
-                            id="password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            disabled={loading}
-                            className="w-full p-3 rounded-lg text-base transition-all duration-200 focus:scale-[1.02]"
-                            style={{
-                                background: 'var(--bg-input)',
-                                border: '2px solid var(--border-light)',
-                                color: 'var(--text-primary)',
-                            }}
-                            placeholder="••••••••"
-                        />
+                        <div className="relative">
+                            <input
+                                id="password"
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                disabled={loading}
+                                className="w-full p-3 pr-12 rounded-lg text-base transition-all duration-200 focus:scale-[1.02]"
+                                style={{
+                                    background: 'var(--bg-input)',
+                                    border: '2px solid var(--border-light)',
+                                    color: 'var(--text-primary)',
+                                }}
+                                placeholder="••••••••"
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                                aria-label={showPassword ? "Hide password" : "Show password"}
+                            >
+                                {showPassword ? (
+                                    <EyeOff size={20} style={{ color: 'var(--text-tertiary)' }} />
+                                ) : (
+                                    <Eye size={20} style={{ color: 'var(--text-tertiary)' }} />
+                                )}
+                            </button>
+                        </div>
                     </div>
 
                     {error && (
