@@ -69,7 +69,7 @@ cd discord-bot && npm install && npm run dev
 
 ## 📦 Handoff Documentation
 
-Full details for reviewers are separated into:
+Full details of each parts are separated into:
 - 📖 **[Admin Dashboard](./admin-dashboard/README.md)**: Features & UX Guide.
 - 📖 **[Discord Bot](./discord-bot/README.md)**: Architecture & Logic Guide.
 
